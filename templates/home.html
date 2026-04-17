@@ -32,9 +32,10 @@
             <!-- Tasks -->
             <div class="col-md-7" style="max-height: 450px; overflow-y: auto;">
                 
+                {% for task in tasks %}
                 <div class="card m-1 shadow-sm">
                     <div class="card-body d-flex justify-content-between align-items-center">
-                        <span>Learn Django basics</span>
+                        <span>{{ task.task }}</span>
                         <div class="d-flex gap-2">
                             <a href="#" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
                             <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -42,32 +43,23 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="card m-1 shadow-sm">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <span>Build Todo App</span>
-                        <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
-                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
 
             <!-- Completed Tasks -->
             <div class="col-md-5">
                 <h5>Completed Tasks</h5>
-
+                {% for task in tasks %}
                 <div class="card m-1 shadow-sm">
                     <div class="card-body d-flex justify-content-between align-items-center">
-                        <span>Install Python</span>
+                        <span></span>
                         <a href="#" class="btn btn-danger btn-sm">
                             <i class="fa fa-times"></i>
                         </a>
                     </div>
                 </div>
+                {% endfor %}
 
             </div>
         </div>
@@ -75,9 +67,10 @@
         <!-- Form -->
         <div class="row">
             <div class="col-md-6 p-0" style="position: fixed; bottom: 20px;">
-                <form>
+                <form action="{% url 'addTask' %}" method="POST">
+                    {% csrf_token %}
                     <div class="d-flex">
-                        <input type="text" class="form-control" placeholder="Add a task">
+                        <input type="text" name="task" class="form-control" placeholder="Add a task">
                         <button type="submit" class="btn btn-primary" style="width: 200px;">
                             <i class="fa fa-plus"></i> Add
                         </button>
