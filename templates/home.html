@@ -36,11 +36,11 @@
                 <div class="card m-1 shadow-sm">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <span>{{ task.task }}</span>
-                        <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
-                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                        <span>
+                            <a href="{% url 'mark_as_done' task.pk %}" class="btn btn-success btn-sm"><i class="fa fa-check"></i>Mark As Done</a>
+                            <a href="{% url 'delete' task.pk %}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Delete</a>
                             <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
-                        </div>
+                        </span>
                     </div>
                 </div>
                 {% endfor %}
@@ -54,8 +54,8 @@
                 <div class="card m-1 shadow-sm">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <span>{{task.task}}</span>
-                        <a href="#" class="btn btn-danger btn-sm">
-                            <i class="fa fa-times"></i>
+                        <a href="{% url 'mark_as_undone' task.pk %}" class="btn btn-danger btn-sm">
+                            <i class="fa fa-times"></i> Undone
                         </a>
                     </div>
                 </div>
